@@ -29,7 +29,9 @@ public:
 	Fixed( void );
 	// Copy constructor
 	Fixed( Fixed const &fixed );
-	// Destructor
+
+// ------------------------------------------------------------------ destructor
+
 	~Fixed( void );
 
 // ---------------------------------------------------------- operator overloads
@@ -38,7 +40,7 @@ public:
 	Fixed &operator =( Fixed const &fixed );
 
 private:
-	int					_value;
-	static int const	_fractional_bits = 8;
+	int						_value;
+	static unsigned const	_fractional_bits = 8;
 
 };
