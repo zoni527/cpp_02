@@ -6,7 +6,7 @@
 /*   By: jvarila <jvarila@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/05 09:46:37 by jvarila           #+#    #+#             */
-/*   Updated: 2025/06/05 09:49:12 by jvarila          ###   ########.fr       */
+/*   Updated: 2025/06/05 22:53:09 by jvarila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,29 +26,25 @@ int main( void ) {
 	{
 		Fixed a;
 		std::cout << "\n";
-		Fixed b( a );
+		Fixed const b( 10 );
 		std::cout << "\n";
-		Fixed c;
+		Fixed const c( 42.42f );
 		std::cout << "\n";
-		c = b;
+		Fixed const d( b );
 		std::cout << "\n";
-		std::cout << a.getRawBits() << std::endl;
+		a = Fixed( 1234.4321f );
 		std::cout << "\n";
-		std::cout << b.getRawBits() << std::endl;
-		std::cout << "\n";
-		std::cout << c.getRawBits() << std::endl;
-		std::cout << "\n";
-	}
-	// -------------------------------------------------------------------------
-
-	print_test_name( "Extra test: set raw bits" );
-	{
-		Fixed a;
-		std::cout << "\na.getRawbits(): " << a.getRawBits() << "\n\n";
-		a.setRawBits( 42042420 );
-		std::cout << "\na.getRawbits(): " << a.getRawBits() << "\n\n";
+		std::cout << "a is " << a << "\n";
+		std::cout << "b is " << b << "\n";
+		std::cout << "c is " << c << "\n";
+		std::cout << "d is " << d << "\n";
+		std::cout << "a is " << a.toInt() << " as integer" << "\n";
+		std::cout << "b is " << b.toInt() << " as integer" << "\n";
+		std::cout << "c is " << c.toInt() << " as integer" << "\n";
+		std::cout << "d is " << d.toInt() << " as integer" << "\n\n";
 	}
 	std::cout << std::endl;
+	// -------------------------------------------------------------------------
 	return 0;
 }
 

@@ -12,6 +12,8 @@
 
 #pragma once
 
+#include <ostream>
+
 // Welcome to Orthodoc Canonical Form!
 
 class Fixed {
@@ -42,11 +44,14 @@ public:
 
 // ---------------------------------------------------------- operator overloads
 
-	// Assignment operator
-	Fixed &operator  =( Fixed const &fixed );
-	Fixed &operator <<( Fixed const &fixed );
+	Fixed			&operator  = ( Fixed const &fixed );
 
 private:
 	int						_value;
 	static unsigned const	_fractional_bits = 8;
+
+	static constexpr float	_power_of_two_float = (1 << _fractional_bits);
+	static constexpr int	_power_of_two_int = (1 << _fractional_bits);
 };
+
+std::ostream	&operator<<( std::ostream &os, Fixed const &fixed);

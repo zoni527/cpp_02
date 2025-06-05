@@ -10,7 +10,7 @@
 #                                                                              #
 # **************************************************************************** #
 
-NAME		:= my_first_class_in_orthodox_canonical_form
+NAME		:= towards_a_more_useful_fixed-point_number_class
 
 CC			:= c++
 CFLAGS		:= -Wall -Wextra -Werror -std=c++11
