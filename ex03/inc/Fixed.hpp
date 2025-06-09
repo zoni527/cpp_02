@@ -6,7 +6,7 @@
 /*   By: jvarila <jvarila@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/03 09:40:46 by jvarila           #+#    #+#             */
-/*   Updated: 2025/06/09 19:40:17 by jvarila          ###   ########.fr       */
+/*   Updated: 2025/06/03 15:32:24 by jvarila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@ public:
 
 // ------------------------------------------------------------ member functions
 
-	int		getRawBits( void ) const;
-	void	setRawBits( int const raw );
+	int			getRawBits( void ) const;
+	void		setRawBits( int const raw );
 
 	float	toFloat( void ) const;
 	int		toInt( void ) const;
@@ -55,7 +55,7 @@ public:
 	Fixed	&operator -- ( void );
 	Fixed	operator  ++ ( int );
 	Fixed	operator  -- ( int );
-
+	
 	// Comparison operators
 	bool	operator  >  ( Fixed const &fixed ) const;
 	bool	operator  <  ( Fixed const &fixed ) const;
