@@ -6,7 +6,7 @@
 /*   By: jvarila <jvarila@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/03 09:40:46 by jvarila           #+#    #+#             */
-/*   Updated: 2025/06/03 15:32:24 by jvarila          ###   ########.fr       */
+/*   Updated: 2025/06/16 18:13:08 by jvarila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,30 +17,18 @@
 class Fixed {
 
 public:
-
 // ------------------------------------------------------------ member functions
-
 	int		getRawBits( void ) const;
 	void	setRawBits( int const raw );
-
 // ---------------------------------------------------------------- constructors
-
-	// Default constructor
-	Fixed( void );
-	// Copy constructor
-	Fixed( Fixed const &fixed );
-
+	Fixed( void );					// Default constructor
+	Fixed( Fixed const &fixed );	// Copy constructor
 // ------------------------------------------------------------------ destructor
-
 	~Fixed( void );
-
 // ---------------------------------------------------------- operator overloads
-
-	// Assignment operator
-	Fixed &operator =( Fixed const &fixed );
+	Fixed &operator = ( Fixed const &fixed ); // Copy assignment operator
 
 private:
 	int						_value;
 	static unsigned const	_fractional_bits = 8;
-
 };

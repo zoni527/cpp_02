@@ -6,21 +6,21 @@
 #    By: jvarila <jvarila@student.hive.fi>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/22 12:04:28 by jvarila           #+#    #+#              #
-#    Updated: 2025/06/02 16:09:47 by jvarila          ###   ########.fr        #
+#    Updated: 2025/06/16 18:14:46 by jvarila          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		:= towards_a_more_useful_fixed-point_number_class
 
-CC			:= c++
-CFLAGS		:= -Wall -Wextra -Werror -std=c++11
+CXX			:= c++
+CFLAGS		:= -Wall -Wextra -Werror -std=c++20
 DEBUG_FLAGS	:= -g
 # ---------------------------------------------------------------------------- #
-INC_DIR		:= ./inc
+INC_DIR		:= inc
 HEADERS		:= $(INC_DIR)/Fixed.hpp
 # ---------------------------------------------------------------------------- #
-SRC_DIR	:=	./src
-OBJ_DIR	:=	./obj
+SRC_DIR	:=	src
+OBJ_DIR	:=	obj
 # ---------------------------------------------------------------------------- #
 SRC :=	$(SRC_DIR)/Fixed.cpp	\
 		$(SRC_DIR)/main.cpp
@@ -32,11 +32,11 @@ OBJ :=	$(patsubst $(SRC_DIR)/%.cpp, $(OBJ_DIR)/%.o, $(SRC))
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	$(CC) $(CFLAGS) -I $(INC_DIR) $(OBJ) -o $@
+	$(CXX) $(CFLAGS) -I $(INC_DIR) $(OBJ) -o $@
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.cpp $(HEADERS)
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) -I $(INC_DIR) -c $< -o $@
+	$(CXX) $(CFLAGS) -I $(INC_DIR) -c $< -o $@
 # ---------------------------------------------------------------------------- #
 clean:
 	rm -rf $(OBJ_DIR)

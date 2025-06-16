@@ -53,8 +53,6 @@ constexpr float	Fixed:: _power_of_two_float;
  *  = 0b 110 * 2
  *  = 0b 1100
  *
- * 1000 0000 | 0000 0000 | 1111 1111 | 0000 0000
- *
  * Max possible positive number without fractional part:
  *
  * -> 0x        7f |        ff |        ff |        00 >> 8
@@ -78,32 +76,6 @@ void Fixed:: setRawBits( int const raw ) {
 
 float Fixed:: toFloat( void ) const {
 	return ( _value / _power_of_two_float );
-
-	/**
-	 * At one point I thought of constructing the float by using base 10, but
-	 * that would have caused some bad wrangling of bytes, which would have
-	 * been difficult and unnecessary.
-	 * -------------------------------------------------------------------------
-	 *
-	 * Found this clever trick to make bit masks on reddit:
-	 * if _fractional_bits = 8:
-	 * -> 1				= 0b 0000 0000 0000 0001 = 1
-	 * -> 1 << 8		= 0b 0000 0001 0000 0000 = 256
-	 * -> (1 << 8) - 1	= 0b 0000 0000 1111 1111 = 255
-	 */
-
-	/**
-	 * int fractional_bits = value & ( ( 1 << _fractional_bits ) - 1 );
-	 *
-	 * float fractional_part = static_cast<float>(fractional_bits);
-	 * for ( int i = 0; i < _fractional_bits; ++i )
-	 * 	fractional_part /= 10;
-	 *
-	 * int whole_bits = _value >> _fractional_bits;
-	 * float whole_part = static_cast<float>(whole_bits);
-	 *
-	 * return whole_part + fractional_part;
-	 */
 }
 
 int Fixed:: toInt( void ) const {
@@ -138,53 +110,17 @@ const Fixed &Fixed:: max( const Fixed &f1, const Fixed &f2 ) {
 
 // ---------------------------------------------------------------- constructors
 
-// Default constructor
 Fixed:: Fixed( void ) : _value( 0 ) {}
 
-// Copy constructor
 Fixed:: Fixed( Fixed const &fixed ) {
 	*this = fixed;
 }
 
-// Int constructor
-Fixed:: Fixed( int const integer ) {
-	 _value = ( integer << _fractional_bits );
+Fixed:: Fixed( int const integer )
+: _value( integer << _fractional_bits ) {}
 
-	// This portion of code I used to have for checking if the original integer
-	// would fit in the int type in the system when shifted fractional bits to
-	// the left. The division is done instead of shifting back due to the
-	// undefined behaviour of right shifting signed integers (division isn't
-	// UB). After discussions with peers I agree that the type should be fast.
-/**
-	int shift_left = ( ( integer << _fractional_bits ) );
-	if ( shift_left / _power_of_two_int != integer )
-		std::cout << "WARNING! Number can't be simply shifted without corruption" << std::endl;
-*/
-}
-
-// Float constructor
-Fixed:: Fixed( float const float_num ) {
-	_value = roundf( float_num * _power_of_two_float );
-
-	// 123.456...
-	// Whole part = 123
-/**
-	int whole_part = static_cast<int>( float_num );
-	if ( ( ( whole_part << _fractional_bits ) >> _fractional_bits ) != whole_part )
-		std::cout << "WARNING! Number can't be simply shifted without corruption" << std::endl;
-*/
-
-	// Float part = .456...
-	// Get _fractional_bits real bytes
-/**
-	float temp = float_num;
-	for ( int i = 0; i < _fractional_bits; ++i )
-		temp *= 10;
-	temp = 4567 8901.234...
-	int fractional_part = static_cast<int>(temp);
-	_value = whole_part | fractional_part;
-*/
-}
+Fixed:: Fixed( float const float_num ) 
+: _value( roundf( float_num * _power_of_two_float ) ) {}
 
 // ------------------------------------------------------------------ destructor
 Fixed:: ~Fixed( void ) {}
@@ -196,31 +132,33 @@ Fixed &Fixed:: operator = ( Fixed const &fixed ) {
 	return *this;
 }
 
-// Increment and decrement
-
+// Preincrement
 Fixed &Fixed:: operator ++ ( void ) {
 	++_value;
 	return *this;
 }
 
+// Predecrement
 Fixed &Fixed:: operator -- (void ) {
 	--_value;
 	return *this;
 }
 
+// Postincrement
 Fixed Fixed:: operator ++ ( int ) {
 	Fixed temp( *this );
 	++_value;
 	return temp;
 }
 
+// Postdecrement
 Fixed Fixed:: operator -- ( int ) {
 	Fixed temp( *this );
 	--_value;
 	return temp;
 }
 
-// Comparison operators
+// Comparison operator overloads
 
 bool Fixed:: operator > ( Fixed const &fixed ) const {
 	return ( _value > fixed._value );
@@ -246,7 +184,7 @@ bool Fixed:: operator != ( Fixed const &fixed ) const {
 	return ( _value != fixed._value );
 }
 
-// Arithmetic Fixed:: operators
+// Arithmetic operator overloads
 
 Fixed Fixed:: operator + ( Fixed const &fixed ) const {
 	Fixed sum;

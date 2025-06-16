@@ -12,15 +12,15 @@
 
 NAME		:= my_first_class_in_orthodox_canonical_form
 
-CC			:= c++
-CFLAGS		:= -Wall -Wextra -Werror -std=c++11
+CXX			:= c++
+CFLAGS		:= -Wall -Wextra -Werror -std=c++20
 DEBUG_FLAGS	:= -g
 # ---------------------------------------------------------------------------- #
-INC_DIR		:= ./inc
+INC_DIR		:= inc
 HEADERS		:= $(INC_DIR)/Fixed.hpp
 # ---------------------------------------------------------------------------- #
-SRC_DIR	:=	./src
-OBJ_DIR	:=	./obj
+SRC_DIR	:=	src
+OBJ_DIR	:=	obj
 # ---------------------------------------------------------------------------- #
 SRC :=	$(SRC_DIR)/Fixed.cpp	\
 		$(SRC_DIR)/main.cpp
@@ -29,14 +29,15 @@ OBJ :=	$(patsubst $(SRC_DIR)/%.cpp, $(OBJ_DIR)/%.o, $(SRC))
 
 .SECONDARY: $(OBJ)
 # ---------------------------------------------------------------------------- #
+.DEFAULT: all
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	$(CC) $(CFLAGS) -I $(INC_DIR) $(OBJ) -o $@
+	$(CXX) $(CFLAGS) -I $(INC_DIR) $(OBJ) -o $@
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.cpp $(HEADERS)
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) -I $(INC_DIR) -c $< -o $@
+	$(CXX) $(CFLAGS) -I $(INC_DIR) -c $< -o $@
 # ---------------------------------------------------------------------------- #
 clean:
 	rm -rf $(OBJ_DIR)

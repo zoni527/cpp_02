@@ -11,10 +11,8 @@
 /* ************************************************************************** */
 
 #include "Fixed.hpp"
+#include "ansi_colors.hpp"
 #include <iostream>
-
-#define YELLOW	"\033[0;93m\001"
-#define RESET	"\033[0m\002"
 
 static std::string	n_chars( char c, size_t n );
 static void			print_test_name( std::string str );
@@ -22,7 +20,6 @@ static void			print_test_name( std::string str );
 int main( void ) {
 
 	print_test_name( "Subject's main (with better formatting)" );
-	// -------------------------------------------------------------------------
 	{
 		Fixed a;
 		std::cout << "\n";
@@ -39,8 +36,6 @@ int main( void ) {
 		std::cout << c.getRawBits() << std::endl;
 		std::cout << "\n";
 	}
-	// -------------------------------------------------------------------------
-
 	print_test_name( "Extra test: set raw bits" );
 	{
 		Fixed a;
@@ -60,9 +55,9 @@ static void print_test_name( std::string str ) {
 	size_t width = str.length() + 10;
 
 	std::string separator = n_chars( '-', width );
-	std::cout << "\n" YELLOW << separator << "\n";
+	std::cout << "\n" C_HI_Y << separator << "\n";
 	std::cout << "**** " << str << " ****";
-	std::cout << "\n" << separator << RESET "\n";
+	std::cout << "\n" << separator << C_RST "\n";
 	std::cout << std::endl;
 }
 

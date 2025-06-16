@@ -27,12 +27,10 @@ void Fixed:: setRawBits( int const raw ) {
 
 // ---------------------------------------------------------------- constructors
 
-// Default constructor
 Fixed:: Fixed( void ) : _value(0) {
 	std::cout << "Default constructor called" << std::endl;
 }
 
-// Copy constructor
 Fixed:: Fixed( Fixed const &fixed ) {
 	std::cout << "Copy constructor called" << std::endl;
 	*this = fixed;
@@ -46,7 +44,6 @@ Fixed:: ~Fixed( void ) {
 
 // ---------------------------------------------------------- operator overloads
 
-// Assignment operator
 Fixed &Fixed:: operator =( Fixed const &fixed ) {
 	std::cout << "Copy assignment operator called" << std::endl;
 	if ( this != &fixed )

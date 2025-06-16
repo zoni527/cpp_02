@@ -17,46 +17,33 @@
 class Fixed {
 
 public:
-
 // ------------------------------------------------------------ member functions
-
 	int		getRawBits( void ) const;
 	void	setRawBits( int const raw );
 
 	float	toFloat( void ) const;
 	int		toInt( void ) const;
-
 // ----------------------------------------------------- static member functions
-
 	static Fixed		&min( Fixed &f1, Fixed &f2 );
 	static Fixed		&max( Fixed &f1, Fixed &f2 );
 	static Fixed const	&min( Fixed const &f1, Fixed const &f2 );
 	static Fixed const	&max( Fixed const &f1, Fixed const &f2 );
-
 // ---------------------------------------------------------------- constructors
-
-	// Default constructor
 	Fixed( void );
-	// Copy constructor
 	Fixed( Fixed const	&fixed );
-
 	Fixed( int const	integer );
 	Fixed( float const	float_num );
-
 // ------------------------------------------------------------------ destructor
 	~Fixed( void );
 // --------------------------------------------------- member operator overloads
 
-	// Assignment operator
 	Fixed	&operator =  ( Fixed const &fixed );
 
-	// Increment and decrement
 	Fixed	&operator ++ ( void );
 	Fixed	&operator -- ( void );
 	Fixed	operator  ++ ( int );
 	Fixed	operator  -- ( int );
 
-	// Comparison operators
 	bool	operator  >  ( Fixed const &fixed ) const;
 	bool	operator  <  ( Fixed const &fixed ) const;
 	bool	operator  >= ( Fixed const &fixed ) const;
@@ -64,7 +51,6 @@ public:
 	bool	operator  == ( Fixed const &fixed ) const;
 	bool	operator  != ( Fixed const &fixed ) const;
 
-	// Arithmetic operators
 	Fixed	operator  +  ( Fixed const &fixed ) const;
 	Fixed	operator  -  ( Fixed const &fixed ) const;
 	Fixed	operator  *  ( Fixed const &fixed ) const;
