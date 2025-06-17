@@ -12,6 +12,9 @@
 
 #pragma once
 
+#ifndef FIXED_H
+# define FIXED_H
+
 // Welcome to Orthodoc Canonical Form!
 
 class Fixed {
@@ -32,3 +35,5 @@ private:
 	int						_value;
 	static unsigned const	_fractional_bits = 8;
 };
+
+#endif

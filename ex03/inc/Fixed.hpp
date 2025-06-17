@@ -12,27 +12,25 @@
 
 #pragma once
 
-#include <ostream>
+#ifndef FIXED_HPP
+# define FIXED_HPP
+
+# include <ostream>
 
 class Fixed {
 
 public:
-
 // ------------------------------------------------------------ member functions
-
 	int			getRawBits( void ) const;
 	void		setRawBits( int const raw );
 
 	float	toFloat( void ) const;
 	int		toInt( void ) const;
-
 // ----------------------------------------------------- static member functions
-
 	static Fixed		&min( Fixed &f1, Fixed &f2 );
 	static Fixed		&max( Fixed &f1, Fixed &f2 );
 	static Fixed const	&min( Fixed const &f1, Fixed const &f2 );
 	static Fixed const	&max( Fixed const &f1, Fixed const &f2 );
-
 // ---------------------------------------------------------------- constructors
 
 	// Default constructor
@@ -42,7 +40,6 @@ public:
 
 	Fixed( int const	integer );
 	Fixed( float const	float_num );
-
 // ------------------------------------------------------------------ destructor
 	~Fixed( void );
 // --------------------------------------------------- member operator overloads
@@ -79,3 +76,5 @@ private:
 // ----------------------------------------------- non member operator overloads
 
 std::ostream	&operator << ( std::ostream &os, Fixed const &fixed );
+
+#endif

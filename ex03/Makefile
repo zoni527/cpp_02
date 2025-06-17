@@ -6,37 +6,40 @@
 #    By: jvarila <jvarila@student.hive.fi>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/22 12:04:28 by jvarila           #+#    #+#              #
-#    Updated: 2025/06/02 16:09:47 by jvarila          ###   ########.fr        #
+#    Updated: 2025/06/17 11:31:50 by jvarila          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		:= bsp
 
-CC			:= c++
+CXX			:= c++
 CFLAGS		:= -Wall -Wextra -Werror -std=c++20
 DEBUG_FLAGS	:= -g
 # ---------------------------------------------------------------------------- #
-INC_DIR		:= ./inc
+INC_DIR		:= inc
 HEADERS		:= $(INC_DIR)/Fixed.hpp
 # ---------------------------------------------------------------------------- #
-SRC_DIR	:=	./src
-OBJ_DIR	:=	./obj
+SRC_DIR	:=	src
+OBJ_DIR	:=	obj
 # ---------------------------------------------------------------------------- #
 SRC :=	$(SRC_DIR)/Fixed.cpp	\
+		$(SRC_DIR)/Point.cpp	\
+		$(SRC_DIR)/bsp.cpp		\
 		$(SRC_DIR)/main.cpp
 # ---------------------------------------------------------------------------- #
 OBJ :=	$(patsubst $(SRC_DIR)/%.cpp, $(OBJ_DIR)/%.o, $(SRC))
 
 .SECONDARY: $(OBJ)
 # ---------------------------------------------------------------------------- #
+.DEFAULT: all
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	$(CC) $(CFLAGS) -I $(INC_DIR) $(OBJ) -o $@
+	$(CXX) $(CFLAGS) -I $(INC_DIR) $(OBJ) -o $@
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.cpp $(HEADERS)
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) -I $(INC_DIR) -c $< -o $@
+	$(CXX) $(CFLAGS) -I $(INC_DIR) -c $< -o $@
 # ---------------------------------------------------------------------------- #
 clean:
 	rm -rf $(OBJ_DIR)

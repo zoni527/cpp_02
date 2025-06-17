@@ -6,7 +6,7 @@
 /*   By: jvarila <jvarila@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 17:08:00 by jvarila           #+#    #+#             */
-/*   Updated: 2025/06/09 17:15:56 by jvarila          ###   ########.fr       */
+/*   Updated: 2025/06/17 10:57:06 by jvarila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,24 +20,23 @@
 class Point {
 
 public:
-
 // ------------------------------------------------------------ member functions
-
+	Fixed	getX( void ) const;
+	Fixed	getY( void ) const;
 // ---------------------------------------------------------------- constructors
-
 	Point( void );
 	Point( Point const &src );
-
 	Point ( float const flt1, float const flt2 );
-
 // ------------------------------------------------------------------ destructor
 	~Point( void );
 // ---------------------------------------------------------- operator overloads
-
 	Point	&operator = ( Point const &src );
 
 private:
-	Fixed const	x;
-	Fixed const	y;
+	Fixed const	_x;
+	Fixed const	_y;
 };
+
+bool	bsp( Point const a, Point const b, Point const c, Point const Point );
+
 #endif

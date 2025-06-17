@@ -16,7 +16,7 @@
 # define ANSI_COLORS_HPP
 
 // Basic
-# define C_BL		"\033[0;30m\001"
+# define C_K		"\033[0;30m\001"
 # define C_R		"\033[0;31m\001"
 # define C_G		"\033[0;32m\001"
 # define C_Y		"\033[0;33m\001"
@@ -26,7 +26,7 @@
 # define C_W		"\033[0;37m\001"
 
 // Bold
-# define C_B_BL		"\033[1;30m\001"
+# define C_B_K		"\033[1;30m\001"
 # define C_B_R		"\033[1;31m\001"
 # define C_B_G		"\033[1;32m\001"
 # define C_B_Y		"\033[1;33m\001"
@@ -36,7 +36,7 @@
 # define C_B_W		"\033[1;37m\001"
 
 // Underline
-# define C_U_BL		"\033[4;30m\001"
+# define C_U_K		"\033[4;30m\001"
 # define C_U_R		"\033[4;31m\001"
 # define C_U_G		"\033[4;32m\001"
 # define C_U_Y		"\033[4;33m\001"
@@ -46,7 +46,7 @@
 # define C_U_W		"\033[4;37m\001"
 
 // Background
-# define C_BG_BL	"\033[40m\001"
+# define C_BG_K		"\033[40m\001"
 # define C_BG_R		"\033[41m\001"
 # define C_BG_G		"\033[42m\001"
 # define C_BG_Y		"\033[43m\001"
@@ -56,7 +56,7 @@
 # define C_BG_W		"\033[47m\001"
 
 // High intensity
-# define C_HI_BL	"\033[0;90m\001"
+# define C_HI_K		"\033[0;90m\001"
 # define C_HI_R		"\033[0;91m\001"
 # define C_HI_G		"\033[0;92m\001"
 # define C_HI_Y		"\033[0;93m\001"
@@ -66,7 +66,7 @@
 # define C_HI_W		"\033[0;97m\001"
 
 // Bold high intensity
-# define C_B_HI_BL	"\033[1;90m\001"
+# define C_B_HI_K	"\033[1;90m\001"
 # define C_B_HI_R	"\033[1;91m\001"
 # define C_B_HI_G	"\033[1;92m\001"
 # define C_B_HI_Y	"\033[1;93m\001"
@@ -76,7 +76,7 @@
 # define C_B_HI_W	"\033[1;97m\001"
 
 // Background high intensity
-# define C_BG_HI_BL	"\033[0;100m\001"
+# define C_BG_HI_K	"\033[0;100m\001"
 # define C_BG_HI_R	"\033[0;101m\001"
 # define C_BG_HI_G	"\033[0;102m\001"
 # define C_BG_HI_Y	"\033[0;103m\001"

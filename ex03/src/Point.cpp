@@ -11,17 +11,32 @@
 /* ************************************************************************** */
 
 #import "Point.hpp"
-#import "orthodox_canonical.hpp"
+
+Fixed Point:: getX( void ) const {
+	return _x;
+}
+
+Fixed Point:: getY( void ) const {
+	return _y;
+}
 
 // ---------------------------------------------------------------- constructors
 
-Point:: Point( void ) {}
-Point:: Point( Point const &src ) {}
-//
+Point:: Point( void )
+: _x( 0 ), _y( 0 ) {}
+
+Point:: Point( Point const &src )
+: _x( src._x ), _y( src._y ) {}
+
+Point:: Point( float const flt1, float const flt2 )
+: _x( Fixed( flt1 ) ), _y( Fixed( flt2 ) ) {}
+
 // ------------------------------------------------------------------ destructor
-
 Point:: ~Point( void ) {}
-
 // ---------------------------------------------------------- operator overloads
 
-Point &Point:: operator =( Point const &src ) {}
+// Members are const, nothing to do
+Point &Point:: operator = ( Point const &src ) {
+	(void)src;
+	return *this;
+}
